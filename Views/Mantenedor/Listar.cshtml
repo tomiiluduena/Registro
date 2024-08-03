@@ -1,0 +1,42 @@
+﻿@model List<UsersModel>
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Lista de Usuarios Activos
+    </div>
+    <div class="card-body">
+        <a asp-action="Guardar" asp-controller="Mantenedor" class="btn btn-success"><i class="bi bi-person-plus"></i> Crear nuevo Usuario</a>
+        <hr/>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Fecha de nacimiento</tdh>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                  <tr>
+                        <td>@item.IdUsers</td>
+                        <td>@item.Name</td>
+                        <td>@item.Date?.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Service</td>
+                        <td>
+                            <a asp-action="Editar" asp-controller="Mantenedor" class="btn btn-primary btn-sm" asp-route-IdUsers="@item.IdUsers"><i class="bi bi-pencil-square"></i> Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Mantenedor" class="btn btn-danger btn-sm" asp-route-IdUsers="@item.IdUsers"><i class="bi bi-person-dash"></i> Eliminar</a>
+                        </td>
+                  </tr>  
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
